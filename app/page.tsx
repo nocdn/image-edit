@@ -343,6 +343,10 @@ export default function Home() {
                       {prompt !== "" && !isProcessing ? (
                         <motion.div
                           key="prompt"
+                          onClick={() => {
+                            processImage();
+                          }}
+                          className="cursor-pointer"
                           initial={{
                             opacity: 0,
                             scale: 0.95,
