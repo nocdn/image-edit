@@ -178,8 +178,13 @@ export default function Home() {
   }
 
   return (
-    <div className="grid place-content-center h-dvh w-screen motion-opacity-in-0">
-      <DropZone onClick={handleClick} onDropped={handleFile} stage={stage}>
+    <div className="flex flex-col items-center justify-center h-dvh w-screen motion-opacity-in-0">
+      <DropZone
+        onClick={handleClick}
+        onDropped={handleFile}
+        stage={stage}
+        className="mb-auto mt-12 md:mt-0 md:mb-0"
+      >
         {(() => {
           if (isRateLimited) {
             return (
@@ -213,7 +218,7 @@ export default function Home() {
                     <button
                       onClick={handleUndo}
                       disabled={historyIndex === 0 || isProcessing}
-                      className={`transition-opacity duration-200 ${
+                      className={`transition-opacity duration-200 touch-hitbox ${
                         historyIndex === 0 || isProcessing
                           ? "opacity-0 pointer-events-none"
                           : "opacity-100 cursor-pointer hover:opacity-60"
@@ -230,7 +235,7 @@ export default function Home() {
                       disabled={
                         historyIndex >= imageHistory.length - 1 || isProcessing
                       }
-                      className={`transition-opacity duration-200 ${
+                      className={`transition-opacity duration-200 touch-hitbox ${
                         historyIndex >= imageHistory.length - 1 || isProcessing
                           ? "opacity-0 pointer-events-none"
                           : "opacity-100 cursor-pointer hover:opacity-60"
@@ -245,7 +250,9 @@ export default function Home() {
                   </div>
                   <div
                     className={`w-fit transition-all ${
-                      stage === "processing" ? "dither-xs" : ""
+                      stage === "processing"
+                        ? "blur-sm opacity-50 scale-95"
+                        : ""
                     } rounded-md duration-500 ${
                       stage === "processing" ? "" : ""
                     } relative group cursor-pointer`}
@@ -283,7 +290,7 @@ export default function Home() {
                           <motion.input
                             key="input"
                             type="text"
-                            className="focus:outline-none font-medium pl-0.5 w-full"
+                            className="focus:outline-none font-medium pl-0.5 w-full text-[16px]"
                             placeholder="describe your edits"
                             value={prompt}
                             onChange={(e) => setPrompt(e.target.value)}
@@ -366,7 +373,7 @@ export default function Home() {
                           <Squircle
                             cornerRadius={6}
                             cornerSmoothing={1}
-                            className="flex items-center gap-1 text-gray-500 text-sm border border-gray-100 px-1.5 py-1 mr-0.5"
+                            className="flex items-center gap-1 text-gray-500 text-sm border border-gray-100 px-1.5 py-1 mr-0.5 active:scale-95 transition-all duration-200 touch-hitbox"
                           >
                             <Command size={13} className="text-gray-500" />
                             <Plus

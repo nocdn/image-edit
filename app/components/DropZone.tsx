@@ -6,6 +6,7 @@ interface DropZoneProps {
   onClick: () => void;
   onDropped: (file: File) => void;
   stage: string;
+  className?: string;
 }
 
 export default function DropZone({
@@ -13,13 +14,14 @@ export default function DropZone({
   onClick,
   onDropped,
   stage,
+  className,
   ...props
 }: DropZoneProps) {
   const [isDraggingOver, setIsDraggingOver] = useState(false);
 
   return (
     <motion.div
-      className={`font-jetbrains-mono ${
+      className={`font-jetbrains-mono ${className} ${
         stage === "done" || stage === "attached"
           ? "cursor-text"
           : "cursor-pointer"
